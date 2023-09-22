@@ -1,4 +1,4 @@
-package io.artisancodes.springhibernatedemo;
+package io.artisancodes.util;
 
 import org.springframework.stereotype.Component;
 
