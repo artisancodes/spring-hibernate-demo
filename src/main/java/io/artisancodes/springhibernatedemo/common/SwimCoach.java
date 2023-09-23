@@ -1,16 +1,13 @@
 package io.artisancodes.springhibernatedemo.common;
 
-import org.springframework.stereotype.Component;
+public class SwimCoach implements Coach {
 
-@Component
-public class TrackCoach implements Coach {
-
-    public TrackCoach() {
+    public SwimCoach() {
         System.out.println("In constructor: " + getClass().getSimpleName());
     }
 
     @Override
     public String getDailyWorkout() {
-        return "Run a hard 5k!";
+        return "Swim 100 meters are as warm up";
     }
 }
