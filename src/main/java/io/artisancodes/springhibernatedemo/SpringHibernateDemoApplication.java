@@ -18,9 +18,22 @@ public class SpringHibernateDemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			//createStudent(studentDAO);
+			createStudent(studentDAO);
 			createMultipleStudents(studentDAO);
+			readStudent(studentDAO);
 		};
+	}
+	private void createStudent(StudentDAO studentDAO) {
+		// create a student object
+		System.out.println("Creating a new student object ...");
+		Student student = new Student("Lewis", "Hamilton", "lewis@artisancodes.io");
+
+		// save the student object
+		System.out.println("Saving the student ...");
+		studentDAO.save(student);
+
+		// display the id of the saved student
+		System.out.println("Saved student. Generated ID: " + student.getId());
 	}
 
 	private void createMultipleStudents(StudentDAO studentDAO) {
@@ -41,17 +54,26 @@ public class SpringHibernateDemoApplication {
 		System.out.println("Saved tempStudent3 . Generated ID: " + tempStudent3.getId());
 	}
 
-	private void createStudent(StudentDAO studentDAO) {
+	private void readStudent(StudentDAO studentDAO) {
 		// create a student object
 		System.out.println("Creating a new student object ...");
-		Student student = new Student("Rúben", "Leonardo", "ruben@artisancodes.io");
+		Student tempStudent = new Student("Rúben", "Leonardo", "ruben@artisancodes.io");
 
 		// save the student object
 		System.out.println("Saving the student ...");
-		studentDAO.save(student);
+		studentDAO.save(tempStudent);
 
 		// display the id of the saved student
-		System.out.println("Saved student. Generated ID: " + student.getId());
+		int theId = tempStudent.getId();
+		System.out.println("Saved student. Generated ID: " + theId);
+
+		// retrieve student based on the id: primary key
+		System.out.println("Retrieving student ...");
+		Student student = studentDAO.findById(theId);
+
+		// display student
+		System.out.println("Found the student: " + student);
+
 	}
 
 }
