@@ -18,8 +18,27 @@ public class SpringHibernateDemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			createStudent(studentDAO) ;
+			//createStudent(studentDAO);
+			createMultipleStudents(studentDAO);
 		};
+	}
+
+	private void createMultipleStudents(StudentDAO studentDAO) {
+		// create multiple students
+		System.out.println("Creating 3 student objects ...");
+		Student tempStudent1 = new Student("Jéssica", "Fonseca", "jess@artisancodes.io");
+		Student tempStudent2 = new Student("Inês", "Leonardo", "ines@artisancodes.io");
+		Student tempStudent3 = new Student("Daniel", "Godinho", "daniel@artisancodes.io");
+
+		// save the student objects
+		studentDAO.save(tempStudent1);
+		studentDAO.save(tempStudent2);
+		studentDAO.save(tempStudent3);
+
+		// display the id of the saved student
+		System.out.println("Saved tempStudent1 . Generated ID: " + tempStudent1.getId());
+		System.out.println("Saved tempStudent2 . Generated ID: " + tempStudent2.getId());
+		System.out.println("Saved tempStudent3 . Generated ID: " + tempStudent3.getId());
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
