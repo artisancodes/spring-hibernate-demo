@@ -21,13 +21,13 @@ public class SpringHibernateDemoApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
 			//createStudent(studentDAO);
-			//createMultipleStudents(studentDAO);
+			createMultipleStudents(studentDAO);
 			//readStudent(studentDAO);
 			//readAllStudents(studentDAO);
 			//readAllStudentsByLastName(studentDAO);
 			//updateStudent(studentDAO);
 			//deleteStudent(studentDAO);
-			deleteAll(studentDAO);
+			//deleteAll(studentDAO);
 		};
 	}
 
