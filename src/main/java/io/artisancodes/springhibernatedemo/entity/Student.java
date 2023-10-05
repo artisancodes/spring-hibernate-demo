@@ -1,8 +1,5 @@
 package io.artisancodes.springhibernatedemo.entity;
 
-import jakarta.persistence.Entity;
-
-@Entity
 public class Student {
     private String firstName;
     private String lastName;
