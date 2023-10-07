@@ -1,4 +1,10 @@
 # spring-hibernate-demo
+
+## REST Endpoints
+- By default, Spring Data REST will create endpoints based on entity type.
+- Simple pluralized form
+  - First character of entity type is lowercase
+  - Then just adds an 's' to the entity
  
 ## HATEOAS
 - Spring Data REST endpoints are HATEOAS compliant
