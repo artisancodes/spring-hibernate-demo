@@ -1,4 +1,4 @@
-package io.artisancodes.springhibernatedemo;
+package io.artisancodes.springhibernatedemo.controller;
 
 import io.artisancodes.springhibernatedemo.entity.Employee;
 import io.artisancodes.springhibernatedemo.service.EmployeeService;
