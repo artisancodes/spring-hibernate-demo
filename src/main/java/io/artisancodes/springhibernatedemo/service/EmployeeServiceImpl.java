@@ -1,40 +1,43 @@
 package io.artisancodes.springhibernatedemo.service;
 
-import io.artisancodes.springhibernatedemo.dao.EmployeeDAO;
 import io.artisancodes.springhibernatedemo.entity.Employee;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final EmployeeDAO employeeDAO;
+    private final EmployeeRepository employeeRepository;
 
-    public EmployeeServiceImpl(EmployeeDAO employeeDAO) {
-        this.employeeDAO = employeeDAO;
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
     }
 
     @Override
     public List<Employee> findAll() {
-        return employeeDAO.findAll();
+        return employeeRepository.findAll();
     }
 
     @Override
     public Employee findById(int id) {
-        return employeeDAO.findById(id);
+        Optional<Employee> results = employeeRepository.findById(id);
+
+        if (results.isPresent()) {
+            return results.get();
+        }
+
+        throw new RuntimeException("Did not found employee id - " + id);
     }
 
-    @Transactional
     @Override
     public Employee save(Employee employee) {
-        return employeeDAO.save(employee);
+        return employeeRepository.save(employee);
     }
 
-    @Transactional
     @Override
     public void deleteById(int id) {
-        employeeDAO.delete(id);
+        employeeRepository.deleteById(id);
     }
 }
